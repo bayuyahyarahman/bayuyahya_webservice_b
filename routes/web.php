@@ -1,5 +1,7 @@
 <?php
 
+use App\http\Controllers\MahasiswaController;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +16,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('master','Template/master');
+
+// Route Untuk Mahasiswa
+Route::get('data-mahasiswa',[MahasiswaController::class,'index']);
+Route::get('add-mahasiswa',[MahasiswaController::class,'create']);
