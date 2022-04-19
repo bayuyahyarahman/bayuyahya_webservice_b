@@ -16,9 +16,9 @@ class CreateBayusTable extends Migration
         Schema::create('bayus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('author', 10);
-            $table->string('title', 50);
+            $table->string('title', 70);
             $table->string('body');
-            $table->string('keyword', 200);
+            $table->string('keyword', 300);
             $table->timestamps();
         });
     }

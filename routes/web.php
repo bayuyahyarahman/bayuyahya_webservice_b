@@ -25,7 +25,14 @@ Route::get('add-mahasiswa',[MahasiswaController::class,'create']);
 
 //tugas menampilkan dan menambah data
 Route::view('master','tema/master');
-
+Auth::routes();
 Route::get('bayu', 'BayuController@index');
 Route::get('bayu.add', 'BayuController@create')->name('bayu.create');
 Route::post('bayu/store', 'BayuController@store')->name('bayu.store');
+Route::delete('bayu/{id}', 'BayuController@destroy')->name('bayu.destroy');
+Route::get('bayu.edit', 'BayuController@edit')->name('bayu.edit');
+Route::put('bayu.update/{id}','BayuController@update')->name('bayu.update');
+
+
+
+

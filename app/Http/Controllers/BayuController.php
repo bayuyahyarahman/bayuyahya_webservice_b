@@ -38,6 +38,12 @@ class BayuController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'author' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+            'keyword' => 'required',
+        ]);
         $bayus = Bayu::create($request->all());
           return redirect('bayu')->with('success', 'Data Berhasil disimpan!');
     }
@@ -59,11 +65,12 @@ class BayuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bayu $id)
     {
-        //
-    }
+        $data = Bayu::find($id);;
+        return view('grace.edit', compact('data'));
 
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -73,7 +80,17 @@ class BayuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Bayu::find($id);
+        $rules = [
+            'title' => 'required',
+            'body' => 'required'
+        ];
+        if($request->author != $data->author) {
+            $rules['author'] = 'required|unique:bayu';
+        }
+        $validatedData = $request->validate($rules);
+        $data->update($request->all());
+        return redirect(url('data.bayu'));
     }
 
     /**
@@ -82,8 +99,9 @@ class BayuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bayu $id)
     {
-        //
+        $id->delete();
+        return redirect('bayu')->with('success', 'Data Berhasil dihapus!');
     }
 }

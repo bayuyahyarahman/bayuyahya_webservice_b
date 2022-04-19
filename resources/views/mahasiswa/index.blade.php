@@ -9,6 +9,7 @@
              <th> NIK </th>
              <th> Nama dosen </th>
              <th> Umur </th>
+             <th> Aksi </th>
          </thead>
          <tbody>
              @foreach ($data_mahasiswa as $row)
@@ -17,6 +18,7 @@
                <td> {{$row->nik}} </td>
                <td> {{$row->nama_dosen}}</td>
                <td> {{$row->umur}} </td>
+               
              </tr>
              @endforeach
 
